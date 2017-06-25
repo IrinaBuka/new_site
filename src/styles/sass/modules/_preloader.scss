@@ -1,0 +1,21 @@
+@import "../lib/preloader/src/loaders";
+
+#preloaderOverlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999999999;
+
+  background: #fff;
+  .preloader {
+    position: absolute !important;
+    top: 50%;
+    left: 50%;
+
+    margin: (-$loader-size/2) 0 0 (-$loader-size/2);
+
+    @include loader03($color: red);
+  }
+}

@@ -1,0 +1,159 @@
+@mixin clear {
+  &:after {
+    display: block;
+    clear: both;
+    content: '';
+  }
+}
+@mixin block-center {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-right: 10px;
+  padding-left: 10px;
+  @include clear;
+}
+
+.clear {
+  &:after {
+    display: block;
+    clear: both;
+    content: '';
+  }
+}
+
+.block-center {
+  position: relative;
+  max-width: 1420px;
+  margin: 0 auto;
+  padding-right: 10px;
+  padding-left: 10px;
+  @include clear;
+}
+
+.content-block {
+  overflow: hidden;
+}
+@mixin appearanceCustom($value) {
+  -webkit-appearance: $value;
+  -moz-appearance: $value;
+  -ms-appearance: $value;
+  -o-appearance: $value;
+  appearance: $value;
+
+  &::-ms-expand {
+    display: none;
+  }
+}
+@mixin transform($transforms) {
+  -moz-transform: $transforms;
+  -o-transform: $transforms;
+  -ms-transform: $transforms;
+  -webkit-transform: $transforms;
+  transform: $transforms;
+}
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+@mixin animations($value) {
+  -webkit-animation: $value;
+
+  -moz-animation: $value;
+
+  -o-animation: $value;
+
+  animation: $value;
+
+}
+@mixin placeholder-form {
+  &::-webkit-input-placeholder {
+    @content
+  }
+
+  &:-moz-placeholder {
+    @content
+  }
+
+  &::-moz-placeholder {
+    @content
+  }
+
+  &:-ms-input-placeholder {
+    @content
+  }
+}
+@mixin translate($x, $y) {
+  @include transform(translate($x, $y));
+}
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+  background-clip: padding-box;
+}
+@mixin social-icon($color) {
+  color: $color;
+  border-color: $color;
+  @include transition(.3s);
+
+  &:hover {
+    opacity: 1;
+    color: #fff;
+    background: $color;
+  }
+}
+@mixin display-inline($align) {
+  display: inline-block;
+  vertical-align: $align;
+  font-size: 14px;
+}
+@mixin triangle-bottom($color) {
+  position: relative;
+
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: -78px;
+    left: 50%;
+    z-index: 2;
+    @include translate(-50%, 0);
+    border: 40px solid transparent;
+    border-top: 40px solid $color;
+    @media (max-width: 767px) {
+      border: 20px solid transparent;
+      border-top: 20px solid $color;
+      bottom: -40px;
+    }
+  }
+}
+@mixin desaturate {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+@mixin stickyFooter($footerHeight, $wrapSelector, $footerSelector) {
+  body,
+  html {
+    height: 100%;
+  }
+
+  #{$wrapSelector} {
+    min-height: 100%;
+
+    &:after {
+      display: block;
+      content: '';
+    }
+  }
+
+  #{$wrapSelector}:after {
+    height: $footerHeight;
+  }
+
+  #{$footerSelector} {
+    min-height: $footerHeight;
+    margin-top: -$footerHeight;
+  }
+}
